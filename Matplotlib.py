@@ -1,14 +1,11 @@
 # -*- coding: cp1251 -*-
 
-# Выполнили: Кобзарев Данил, Алексеев Александр
-
 import matplotlib.pyplot as plt
 import numpy as np
 import string
 
-data1 = {simvol:0 for simvol in string.ascii_uppercase} # Âûæèâøèå
-data2 = {simvol:0 for simvol in string.ascii_uppercase} # Ïîãèáøèå
-print(data1)
+data1 = {simvol:0 for simvol in string.ascii_uppercase} # Here: servivor passengers (key - first simvol of name, value - number servivor passengers)
+data2 = {simvol:0 for simvol in string.ascii_uppercase} # Here: non servivor passengers
 
 with open("tested.csv") as f:
     lines = f.readlines()
@@ -19,10 +16,10 @@ with open("tested.csv") as f:
         isSurvived = params[1]
         if isSurvived == '1':
             data1[first_simvol] += 1
-            print('Âûæèâøèé')
+            print('survivor')
         else:
             data2[first_simvol] += 1
-            print('Ïîãèáøèé')
+            print('non survivor')
         
 
 x = list(data1.keys())
@@ -38,7 +35,7 @@ y2 = [i for i in data2.values()]
 
 color_rectangle[3] = 0.5
 ax.bar(x, y2, color = color_rectangle, width=1)
-ax.set_title("Ïðîçðà÷íûå - ïîãèáøèå, íåïðîçðàí÷íûå - âûæèâøèå")
+ax.set_title("Transparent columns - survivors , Opaque columns - non survivors")
 
 plt.show()
 
